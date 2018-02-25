@@ -69,6 +69,8 @@ namespace WebsocketGateway.Modules
                             // 清除暫存訊息
                             serverContent = new MemoryStream();
 
+                            #region 轉發
+
                             // 傳送至遠端
                             await clientSocket.SendAsync(new ArraySegment<byte>(messageForTransport), serverResult.MessageType, true, CancellationToken.None);
 
@@ -114,6 +116,8 @@ namespace WebsocketGateway.Modules
                                     }
                                 }
                             }
+
+                            #endregion
                         }
                         else
                         {
