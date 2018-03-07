@@ -48,7 +48,7 @@ namespace WebsocketGateway.Modules
             ArraySegment<byte> serverBuffer = WebSocket.CreateServerBuffer(BufferSize);
 
             // 連接至遠端
-            Task task = ProcessClient(context);
+            ThreadPool.QueueUserWorkItem((state) => { ProcessClient(context).Wait(); });
 
             MemoryStream serverContent = new MemoryStream();
 
